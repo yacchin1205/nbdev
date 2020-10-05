@@ -1,10 +1,6 @@
 ![](https://github.com/fastai/nbdev/workflows/CI/badge.svg)
 
 
-# Welcome to nbdev
-> Create delightful python projects using Jupyter Notebooks
-
-
 `nbdev` is a library that allows you to fully develop a library in [Jupyter Notebooks](https://jupyter.org/), putting all your code, tests and documentation in one place. That is: you now have a true [literate programming](https://en.wikipedia.org/wiki/Literate_programming) environment, as envisioned by Donald Knuth back in 1983!
 
 Using the interactive environment, you can easily debug and refactor your code. Add `#export` to the cells that define the functions you want to include in your python modules. Here, for instance, is how `combined_cos` is defined and documented in the `fastai` library:
@@ -72,6 +68,7 @@ In the last cell of your notebook, you can then run:
 from nbdev.export import *
 notebook2script()
 ```
+
 
 ```
 from nbdev.export import *

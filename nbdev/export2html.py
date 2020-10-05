@@ -479,14 +479,19 @@ def nbdev_build_lib(fname:Param("A notebook name or glob to convert", str)=None)
 
 # Cell
 def nbdev_exporter(cls=HTMLExporter, template_file=None):
-    cfg = traitlets.config.Config()
-    exporter = cls(cfg)
-    exporter.exclude_input_prompt=True
-    exporter.exclude_output_prompt=True
-    exporter.anchor_link_text = ' '
-    exporter.template_file = 'jekyll.tpl' if template_file is None else template_file
-    exporter.template_path.append(str(Path(__file__).parent/'templates'))
-    return exporter
+    # For backwards comaptability of 5.x style templates, we pass a full template_file path
+    # instead of manipulating template_paths
+    if not template_file:
+        template_file = 'jekyll.tpl'
+    if template_file and not os.path.isabs(template_file):
+        template_file = str(Path(__file__).parent/'templates'/template_file)
+    cfg = traitlets.config.Config(
+        exclude_input_prompt=True,
+        exclude_output_prompt=True,
+        anchor_link_text=' ',
+        template_file=template_file,
+    )
+    return cls(cfg)
 
 # Cell
 process_cells = [remove_fake_headers, remove_hidden, remove_empty]
@@ -528,7 +533,7 @@ def _notebook2html(fname, cls=HTMLExporter, template_file=None, exporter=None, d
 
 # Cell
 def notebook2html(fname=None, force_all=False, n_workers=None, cls=HTMLExporter, template_file=None,
-                  exporter=None, dest=None, pause=0, execute=True):
+                  exporter=None, dest=None, pause=0.5, execute=True):
     "Convert all notebooks matching `fname` to html files"
     if fname is None:
         files = [f for f in Config().nbs_path.glob('**/*.ipynb')
@@ -548,7 +553,7 @@ def notebook2html(fname=None, force_all=False, n_workers=None, cls=HTMLExporter,
                 files.append(fname)
     if len(files)==0: print("No notebooks were modified")
     else:
-        passed = parallel(_notebook2html, files, n_workers=n_workers, cls=cls,
+        passed = parallel(_notebook2html, files, n_workers=n_workers, cls=cls, threadpool=True,
                           template_file=template_file, exporter=exporter, dest=dest, pause=pause, execute=execute)
         if not all(passed):
             msg = "Conversion failed on the following:\n"
