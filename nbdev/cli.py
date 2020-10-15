@@ -27,10 +27,10 @@ from shutil import copytree,ignore_patterns
 @call_parse
 def nbdev_diff_nbs():
     "Prints the diff between an export of the library in notebooks and the actual modules"
-    lib_folder = Config().lib_path
+    lib_folder = Config().path('lib_path')
     with tempfile.TemporaryDirectory() as d1, tempfile.TemporaryDirectory() as d2:
         d1,d2 = Path(d1),Path(d2)
-        path = Config().lib_path
+        path = Config().path('lib_path')
         ignore=ignore_patterns("__pycache__")
         shutil.copytree(path, d1, dirs_exist_ok=True, ignore=ignore)
         nbdev_build_lib()
@@ -46,9 +46,9 @@ def nbdev_diff_nbs():
 def nbdev_trust_nbs(fname:Param("A notebook name or glob to convert", str)=None,
                     force_all:Param("Trust even notebooks that haven't changed", bool)=False):
     "Trust noteboks matching `fname`"
-    check_fname = Config().nbs_path/".last_trusted"
+    check_fname = Config().path('nbs_path')/".last_trusted"
     last_checked = os.path.getmtime(check_fname) if check_fname.exists() else None
-    files = Config().nbs_path.glob('**/*.ipynb') if fname is None else glob.glob(fname)
+    files = Config().path('nbs_path').glob('**/*.ipynb') if fname is None else glob.glob(fname)
     for fn in files:
         if force_all or not last_checked or os.path.getmtime(fn)>last_checked:
             nb = read_nb(fn)

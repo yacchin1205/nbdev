@@ -27,7 +27,7 @@ class NbCell(AttrDict):
     
     def set_source(self, source):
         self.source = ''.join(source)
-        if self.cell_type=='code' and self.source[:1]!='%': self.parsed = ast.parse(self.source).body
+        if self.cell_type=='code' and self.source[:1]!='%':self.parsed = ast.parse(self.source).body
 
 
 #nbdev_cell ../nbs/00_read.ipynb 15
@@ -78,6 +78,7 @@ def nbdev_create_config(
 
 #nbdev_cell ../nbs/00_read.ipynb 29
 #export
+_init,_version = '__init__.py','version.py'
 def update_version(path:Path):
     "Add or update `__version__` in `version.py`"
     path = Path(path)
@@ -86,7 +87,6 @@ def update_version(path:Path):
 
 #nbdev_cell ../nbs/00_read.ipynb 30
 #export
-_init,_version = '__init__.py','version.py'
 def _has_py(fs): return any(1 for f in fs if f.endswith('.py'))
 
 def add_init(path):
