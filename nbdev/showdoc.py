@@ -16,12 +16,12 @@ if IN_NOTEBOOK:
     from IPython.core import page
 
 
-#nbdev_cell ../nbs/03_showdoc.ipynb 12
+#nbdev_cell ../nbs/03_showdoc.ipynb 13
 #export
 from fastcore.script import Param
 
 
-#nbdev_cell ../nbs/03_showdoc.ipynb 13
+#nbdev_cell ../nbs/03_showdoc.ipynb 14
 #export
 def type_repr(t):
     "Representation of type `t` (in a type annotation)"
@@ -35,7 +35,7 @@ def type_repr(t):
     else: return doc_link(get_name(t))
 
 
-#nbdev_cell ../nbs/03_showdoc.ipynb 16
+#nbdev_cell ../nbs/03_showdoc.ipynb 17
 #export
 _arg_prefixes = {inspect._VAR_POSITIONAL: '\*', inspect._VAR_KEYWORD:'\*\*'}
 
@@ -54,7 +54,7 @@ def format_param(p):
     return res
 
 
-#nbdev_cell ../nbs/03_showdoc.ipynb 18
+#nbdev_cell ../nbs/03_showdoc.ipynb 19
 #export
 def _format_enum_doc(enum, full_name):
     "Formatted `enum` definition to show in documentation"
@@ -62,7 +62,7 @@ def _format_enum_doc(enum, full_name):
     return f'<code>{full_name}</code>',f'<code>Enum</code> = [{vals}]'
 
 
-#nbdev_cell ../nbs/03_showdoc.ipynb 20
+#nbdev_cell ../nbs/03_showdoc.ipynb 21
 #export
 def _escape_chars(s):
     return s.replace('_', '\_')
@@ -80,7 +80,7 @@ def _format_func_doc(func, full_name=None):
     return f'{f_name}',f'{name}{arg_str}'
 
 
-#nbdev_cell ../nbs/03_showdoc.ipynb 22
+#nbdev_cell ../nbs/03_showdoc.ipynb 23
 #export
 def _format_cls_doc(cls, full_name):
     "Formatted `cls` definition to show in documentation"
@@ -90,7 +90,7 @@ def _format_cls_doc(cls, full_name):
     return name,args
 
 
-#nbdev_cell ../nbs/03_showdoc.ipynb 24
+#nbdev_cell ../nbs/03_showdoc.ipynb 25
 #export
 def show_doc(elt, doc_string=True, name=None, title_level=None, disp=True, default_cls_level=2):
     "Show documentation for element `elt`. Supported types: class, function, and enum."
@@ -118,7 +118,7 @@ def show_doc(elt, doc_string=True, name=None, title_level=None, disp=True, defau
     else: return doc
 
 
-#nbdev_cell ../nbs/03_showdoc.ipynb 30
+#nbdev_cell ../nbs/03_showdoc.ipynb 31
 #export
 def get_doc_link(func):
     mod = inspect.getmodule(func)
@@ -132,7 +132,7 @@ def get_doc_link(func):
     except: return None
 
 
-#nbdev_cell ../nbs/03_showdoc.ipynb 33
+#nbdev_cell ../nbs/03_showdoc.ipynb 34
 #export
 def doc(elt):
     "Show `show_doc` info in preview window when used in a notebook"
