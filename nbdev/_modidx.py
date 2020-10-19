@@ -52,21 +52,17 @@ d = { 'mods': { 'nbdev.cli': 'https://nbdev.fast.ai/nbdev.cli',
                             'nbdev.read.export_cells': 'https://nbdev.fast.ai/nbdev.read#export_cells',
                             'nbdev.read.create_all_cell': 'https://nbdev.fast.ai/nbdev.read#create_all_cell',
                             'nbdev.read.NbCell.set_source': 'https://nbdev.fast.ai/nbdev.read#NbCell.set_source'},
-            'nbdev.showdoc': { 'nbdev.showdoc.type_repr': 'https://nbdev.fast.ai/nbdev.showdoc#type_repr',
-                               'nbdev.showdoc.format_param': 'https://nbdev.fast.ai/nbdev.showdoc#format_param',
-                               'nbdev.showdoc.show_doc': 'https://nbdev.fast.ai/nbdev.showdoc#show_doc',
-                               'nbdev.showdoc.get_doc_link': 'https://nbdev.fast.ai/nbdev.showdoc#get_doc_link',
-                               'nbdev.showdoc.doc': 'https://nbdev.fast.ai/nbdev.showdoc#doc'},
+            'nbdev.showdoc': {'nbdev.showdoc.NbdevLookup': 'https://nbdev.fast.ai/nbdev.showdoc#NbdevLookup'},
             'nbdev.sync': {'nbdev.sync.nbdev_update_lib': 'https://nbdev.fast.ai/nbdev.sync#nbdev_update_lib'},
             'nbdev.version': {}},
   'settings': { 'host': 'github',
                 'lib_name': 'nbdev',
                 'user': 'fastai',
                 'branch': 'master',
-                'version': '1.1.1',
+                'version': '2.0.0',
                 'description': 'Writing a library entirely in notebooks',
                 'keywords': 'jupyter notebook',
-                'author': 'Sylvain Gugger and Jeremy Howard',
+                'author': 'Jeremy Howard and Sylvain Gugger',
                 'author_email': 'info@fast.ai',
                 'title': 'nbdev',
                 'copyright': 'fast.ai',
@@ -75,22 +71,8 @@ d = { 'mods': { 'nbdev.cli': 'https://nbdev.fast.ai/nbdev.cli',
                 'min_python': '3.6',
                 'audience': 'Developers',
                 'language': 'English',
-                'requirements': 'fastcore>=1.0.16 nbformat>=4.4.0 nbconvert>=6.0.2 pyyaml jupyter_client>=6.1.5 ipykernel',
+                'requirements': 'fastcore>=1.2.2 nbformat>=4.4.0 nbconvert>=6.0.2 pyyaml jupyter_client>=6.1.5 ipykernel',
                 'conda_requirements': 'nb_conda',
-                'console_scripts': 'nbdev_build_lib=nbdev.export2html:nbdev_build_lib\n'
-                                   'nbdev_update_lib=nbdev.sync:nbdev_update_lib\n'
-                                   'nbdev_diff_nbs=nbdev.sync:nbdev_diff_nbs\n'
-                                   'nbdev_test_nbs=nbdev.test:nbdev_test_nbs\n'
-                                   'nbdev_build_docs=nbdev.export2html:nbdev_build_docs\n'
-                                   'nbdev_nb2md=nbdev.export2html:nbdev_nb2md\n'
-                                   'nbdev_trust_nbs=nbdev.sync:nbdev_trust_nbs\n'
-                                   'nbdev_clean_nbs=nbdev.clean:nbdev_clean_nbs\n'
-                                   'nbdev_read_nbs=nbdev.test:nbdev_read_nbs\n'
-                                   'nbdev_fix_merge=nbdev.merge:nbdev_fix_merge\n'
-                                   'nbdev_install_git_hooks=nbdev.cli:nbdev_install_git_hooks\n'
-                                   'nbdev_bump_version=nbdev.cli:nbdev_bump_version\n'
-                                   'nbdev_new=nbdev.cli:nbdev_new\n'
-                                   'nbdev_detach=nbdev.export2html:nbdev_detach',
                 'nbs_path': 'nbs',
                 'doc_path': 'docs',
                 'doc_host': 'https://nbdev.fast.ai',

@@ -94,6 +94,14 @@ def build_index(self:DocLinks):
     self.write_nbdev_idx()
 
 
+#nbdev_cell ../nbs/01a_doclinks.ipynb 20
+#export
+def _doc_link(url, mod, sym=None):
+    res = urljoin(url, mod)
+    if sym: res += "#" + remove_prefix(sym, mod+".")
+    return res
+
+
 #nbdev_cell ../nbs/01a_doclinks.ipynb 21
 #export
 def _update_baseurl(path=None):
@@ -126,7 +134,7 @@ def nbdev_build_lib(
         with contextlib.suppress(FileNotFoundError): _fn.unlink()
     else: files = glob.glob(nbs)
     for file in files: ExportModuleProcessor(file, dest).create_modules()
-    doc_func = partial(doc_link, urljoin(cfg.doc_host,cfg.doc_baseurl))
+    doc_func = partial(_doc_link, urljoin(cfg.doc_host,cfg.doc_baseurl))
     for file in dest.glob("**/*.py"):
         if file.name[0]!='_': DocLinks(file, doc_func, _fn).build_index()
     if not cfg.get('extension',False):

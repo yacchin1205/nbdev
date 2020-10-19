@@ -1,7 +1,5 @@
-from .show_doc import NbdevLookup
-from . import _modidx
-
-__all__ = ['nbdev_lookup']
-
-nbdev_lookup = NbdevLookup(_modidx)
+from . import _modidx,showdoc
+__all__ = ['nbdev_lookup', 'version']
+nbdev_lookup = showdoc.NbdevLookup(_modidx.d)
+version = _modidx.d['settings']['version']
 
