@@ -57,7 +57,7 @@ setuptools.setup(
     zip_safe = False,
     entry_points = {
         'console_scripts': cfg.get('console_scripts','').split(),
-        'nbdev': [f'index={cfg.get("lib_path")}:NbdevLookup']
+        'nbdev': [f'index={cfg.get("lib_path")}._nbdev']
     },
     **setup_cfg)
 

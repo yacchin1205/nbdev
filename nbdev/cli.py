@@ -16,13 +16,13 @@ from nbformat.sign import NotebookNotary
 import tempfile
 
 
-#nbdev_cell ../nbs/09_cli.ipynb 4
+#nbdev_cell ../nbs/09_cli.ipynb 5
 #export
 import subprocess
 from shutil import copytree,ignore_patterns
 
 
-#nbdev_cell ../nbs/09_cli.ipynb 5
+#nbdev_cell ../nbs/09_cli.ipynb 6
 #export
 @call_parse
 def nbdev_diff_nbs():
@@ -40,7 +40,7 @@ def nbdev_diff_nbs():
         print(run('diff', '-ru', d1, d2, ignore_ex=True)[1])
 
 
-#nbdev_cell ../nbs/09_cli.ipynb 8
+#nbdev_cell ../nbs/09_cli.ipynb 9
 #export
 @call_parse
 def nbdev_trust_nbs(fname:Param("A notebook name or glob to convert", str)=None,
