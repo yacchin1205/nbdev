@@ -22,6 +22,7 @@ from nbconvert.preprocessors import ExecutePreprocessor, Preprocessor
 from nbconvert import HTMLExporter,MarkdownExporter
 import traitlets
 import nbformat
+import traceback
 
 # Cell
 class HTMLParseAttrs(HTMLParser):
@@ -508,6 +509,7 @@ def _notebook2html(fname, cls=HTMLExporter, template_file=None, exporter=None, d
         return True
     except Exception as e:
         print(e)
+        traceback.print_exc();
         return False
 
 # Cell
