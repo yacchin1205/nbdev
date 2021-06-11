@@ -154,6 +154,8 @@ def _img2jkl(d, h, jekyll=True):
 
 # Cell
 def _is_real_image(src):
+    if src.startswith('attachment:'):
+        return False
     return not (src.startswith('http://') or src.startswith('https://') or src.startswith('data:image/'))
 
 # Cell
